@@ -1,0 +1,281 @@
+{% include 'header.html' %}
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Shopify Inventory Tracking</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="/index">Shopify</a></li>
+                                            <li class="breadcrumb-item active">Inventory Tracking</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        
+                        <div class="row">
+
+                            <!-- center modal -->
+                            <button type="button" id="add-user-btn" class="btn btn-primary waves-effect waves-light my-3 col-xxl-1 col-lg-2 col-md-2 col-3 ms-auto me-2" data-bs-toggle="modal" data-bs-target="#add-user-modal">Add Inventory Item</button>
+                            <input type="hidden" id="auto-display-modal" value="">
+                        </div>
+                        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true" id="add-user-modal">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Add Inventory Item</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post" id="new-edu-form" enctype="multipart/form-data">
+
+                                            
+                                             {% csrf_token %}
+                                            <!-- alert -->
+                                             {% if messages %}
+		                                    {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                                    {{message}}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
+                                            
+                                            <div class="row">
+                                                        
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="code" class="form-label">Item Code</label>
+                                                            <input class="form-control" type="text" value="" id="code" name="code" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="name" class="form-label">Item Name</label>
+                                                            <input class="form-control" type="text" value="" id="name" name="name" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="quantity" class="form-label">Item Quantity</label>
+                                                            <input class="form-control" type="number" value="" id="quantity" name="quantity" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="price" class="form-label">Item Price</label>
+                                                            <input class="form-control" type="number" value="" id="price" name="price" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="sales" class="form-label">Item Sales</label>
+                                                            <input class="form-control" type="number" value="" id="sales" name="sales" required>
+                                                        </div>
+
+                            
+                                                        
+                                                        
+                                                        <div class="col-lg-6 col-12">
+                                                            <label class="form-label" for="locationn">Location</label>
+                                                            <select class="form-select" id="locationn" name="locationn" aria-label="Default select example" required>
+                                                                <option selected disabled></option>
+                                                                <option value="USA">USA</option>
+                                                                <option value="Canada">Canada</option>
+                                                                <option value="India">India</option>
+                                                                <option value="UK">United Kindgdom</option>
+                                                            </select>
+                                                        </div>
+
+                            
+
+                                                            <div class="col-12 mb-3">
+                                                                <label for="file1" class="form-label">Image</label>
+                                                                <input type="file" name="myfile" id="file1" class="form-control form-control-lg" />
+                                                            </div> 
+                                
+                                                
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light my-3 col-md-2 col-4 ms-auto me-2">Submit</button>                                        
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <!-- edit user model -->
+                        <button type="button" id="edit-user-btn" class="btn btn-primary waves-effect waves-light my-3 col-xxl-1 col-lg-2 col-md-2 col-3 ms-auto me-2 d-none" data-bs-toggle="modal" data-bs-target="#edit-user-modal">Edit Education</button>
+                        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true" id="edit-user-modal">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Inventory Item</h5>
+                                        <button href="" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/edit-item" method="post" id="edit-edu-form">
+
+                                             {% csrf_token %}
+                                            <!-- alert -->
+                                             {% if messages %}
+		                                    {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                                    {{message}}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
+
+                                            <div class="row">
+                                                <input type="hidden" id="id" name="id">
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="item_code" class="form-label">Item Code</label>
+                                                    <input class="form-control" type="text" value="" id="item_code" name="item_code" required>
+                                                </div>
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="item_name" class="form-label">Item Name</label>
+                                                    <input class="form-control" type="text" value="" id="item_name" name="item_name" required>
+                                                </div>
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="item_quantity" class="form-label">Item Quantity</label>
+                                                    <input class="form-control" type="number" value="" id="item_quantity" name="item_quantity" required>
+                                                </div>
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="item_price" class="form-label">Item Price</label>
+                                                    <input class="form-control" type="number" value="" id="item_price" name="item_price" required>
+                                                </div>
+
+                                                <div class="mb-3 col-md-6 col-12">
+                                                    <label for="item_sales" class="form-label">Item Sales</label>
+                                                    <input class="form-control" type="number" value="" id="item_sales" name="item_sales" required>
+                                                </div>
+
+                    
+                                                
+                                                
+                                                <div class="col-lg-6 col-12">
+                                                    <label class="form-label" for="location">Location</label>
+                                                    <select class="form-select" id="location" name="location" aria-label="Default select example" required>
+                                                        <option selected disabled></option>
+                                                        <option value="USA">USA</option>
+                                                        <option value="Canada">Canada</option>
+                                                        <option value="India">India</option>
+                                                        <option value="UK">United Kindgdom</option>
+                                                    </select>
+                                                </div>
+
+                                               
+                                                
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light my-3 col-md-2 col-4 ms-auto me-2">Submit</button>                                        
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <div class="row">
+
+                            
+                            
+                            <div class="col-12">
+                                
+                                
+                                <h2 class="ms-1 my-3">Details</h2>
+                                <div class="card">
+                                   
+                                    <div class="card-body">
+        
+                                        <table id="datatable" class="table table-bordered dt-responsive datatable nowrap w-100">
+                                            <thead>
+                                            <tr>
+                                                <th>Date Added</th>
+                                                <th>Image</th>
+                                                <th>Item Code</th>
+                                                <th>Item Name</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Sales</th>
+                                                <th>Location</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                            </thead>
+        
+        
+                                            <tbody>
+                                            {% for i in all_items %}
+                                            <tr>
+                                                <td>{{i.date_added}}</td>
+                                                <td><img src="http://127.0.0.1:8000/media/{{i.document}}" width="50" height="50"></td>
+                                                <td>{{i.item_code}}</td>
+                                                <td>{{i.item_name}}</td>
+                                                <td>{{i.quantity}}</td>
+                                                <td>{{i.price}}</td>
+                                                <td>{{i.sales}}</td>
+                                                <td>{{i.location}}</td>
+                                
+                                                <td>
+                                                    <button type="submit" class="btn btn-link" id="{{i.id}}" onclick=getData(this.id)>
+                                                        <i class="fa fa-fw fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                               
+                                                <td>
+                                                    <form action="delete-item/{{i.id}}" method="get">
+                                                        <button type="submit" class="btn btn-link">
+                                                            <i class="fas fa-fw fa-trash" style="font-size: 1.2rem;"></i>                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            
+                                    </tbody>
+                                        </table>
+        
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                 <script>
+                    function getData(username) {
+                        fetch(`get-item/${username}`)
+                        .then(result => result.json())
+                        .then(result => { 
+                            console.log(result);
+                            fillData(result);
+                        }).catch(error=> console.log(error));
+                    }
+
+                    function fillData(data) {
+                        for(let key in data) {
+                        
+                                document.getElementById(key).value = data[key];
+                             
+                            
+                           
+                        }
+                        $('#edit-user-btn').click();
+                    }
+                 </script>
+
+                
+              {% include 'footer.html' %}

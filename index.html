@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+
+    
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Inventory Tracking System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="./static/images/favicon.ico">
+         <link href="./static/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="./static/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+        <link href="./static/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
+
+
+        <!-- preloader css -->
+        <link rel="stylesheet" href="./static/css/preloader.min.css" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="./static/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="./static/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="./static/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
+
+    <!-- <body data-layout="horizontal"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="./static/images/logo-sm.svg" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="./static/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt"></span>
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="./static/images/logo-sm.svg" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="./static/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt"></span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                        
+                    </div>
+
+                    <div class="d-flex">
+
+                        
+                        <div class="dropdown d-sm-inline-block">
+                            <button type="button" class="btn header-item" id="mode-setting-btn">
+                                <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
+                                <i data-feather="sun" class="icon-lg layout-mode-light"></i>
+                            </button>
+                        </div>
+
+                        
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item right-bar-toggle me-2">
+                                <i data-feather="settings" class="icon-lg"></i>
+                            </button>
+                        </div>
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="./static/images/users/avatar-1.jpg"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end"> -->
+                                <!-- item-->
+                                <!-- <a class="dropdown-item" href="apps-contacts-profile.html"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.html"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </header>
+
+            
+            <!-- <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    
+                    <div id="sidebar-menu">
+                        
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" data-key="t-menu">Menu</li>
+
+                           <li>
+                                <a href="users.html" class="">
+                                    <i data-feather="grid"></i>
+                                    <span data-key="t-apps">Users</span>
+                                </a>
+                                
+                            </li>
+
+                            <li>
+                                <a href="courses.html" class="">
+                                    <i data-feather="grid"></i>
+                                    <span data-key="t-apps">Courses</span>
+                                </a>
+                                
+                            </li>
+
+                            
+
+                            <li>
+                                <a href="classes.html" class="">
+                                    <i data-feather="file-text"></i>
+                                    <span data-key="t-pages">Classes</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="location.html" class="">
+                                    <i data-feather="file-text"></i>
+                                    <span data-key="t-pages">Maps</span>
+                                </a>
+                            </li>
+
+                    </div>
+                    
+                </div>
+            </div> -->
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Inventory Tracking</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="index.html">Inventory Tracking</a></li>
+                                            <li class="breadcrumb-item active"></li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        
+                        <div class="row">
+
+                            <!-- center modal -->
+                            <button type="button" id="add-user-btn" class="btn btn-primary waves-effect waves-light my-3 col-xxl-1 col-lg-2 col-md-2 col-3 ms-auto me-2" data-bs-toggle="modal" data-bs-target="#add-user-modal">Add Inventory Items</button>
+                            <input type="hidden" id="auto-display-modal" value="">
+                        </div>
+                        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true" id="add-user-modal">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Add Inventory Items</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post" id="new-emp-form">
+
+                                            <!-- alert -->
+                                            <div class="alert alert-secondary alert-dismissible fade show" role="alert" id="message-parent" style="display: none;">
+                                                <span id="message"></span>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                        
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="item_code" class="form-label">Item Code</label>
+                                                            <input class="form-control" type="text" value="" id="item_code" name="item_code" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="item_name" class="form-label">Item Name</label>
+                                                            <input class="form-control" type="text" value="" id="item_name" name="item_name" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="item_quantity" class="form-label">Item Quantity</label>
+                                                            <input class="form-control" type="number" value="" id="item_quantity" name="item_quantity" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="item_price" class="form-label">Item Price</label>
+                                                            <input class="form-control" type="number" value="" id="item_price" name="item_price" required>
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6 col-12">
+                                                            <label for="item_sales" class="form-label">Total Sales</label>
+                                                            <input class="form-control" type="number" value="" id="item_sales" name="item_sales" required>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <label class="form-label" for="location">Location</label>
+                                                            <select class="form-select" id="location" name="location" aria-label="Default select example" required>
+                                                                <option selected disabled></option>
+                                                                <option value="SJT">USA</option>
+                                                                <option value="TT">Canada</option>  
+                                                                <option value="TT">India</option>
+                                                                <option value="TT">United Kindgdom</option>                    
+                                                            </select>
+                                                        </div>
+
+
+                                        <button type="submit" id="submit" class="btn btn-primary waves-effect waves-light my-3 col-md-2 col-4 ms-auto me-2">Submit</button>                                        
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row">
+
+                            
+                            
+                            <div class="col-12">
+                                
+                                
+                                <h2 class="ms-1 my-3">Details</h2>
+                                <div class="card">
+                                    <!-- <div class="card-header">
+                                        <h4 class="card-title">Details</h4>
+                                        <p class="card-title-desc">
+                                        </p>
+                                    </div> -->
+                                    <div class="card-body">
+        
+                                        <table id="datatable" class="table table-bordered dt-responsive datatable nowrap w-100">
+                                            <thead>
+                                            <tr>
+                                                <th>Date Added</th>
+                                                <th>Item Code</th>
+                                                <th>Item Name</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Total Sales</th>
+                                                <th>Location</th>
+                                            </tr>
+                                            </thead>
+        
+        
+                                            <tbody>
+                                            
+                                           </tbody>
+                                        </table>
+        
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear());</script> © Course Registration.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- end layout-wrapper -->
+
+        
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+                    <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="m-0" />
+
+                <div class="p-4">
+                    <!-- <h6 class="mb-3 d-inline"></h6> -->
+                    
+                    <div class="form-check form-check-inline" style="opacity: 0;">
+                        <input class="form-check-input" type="hidden" name=""
+                            id="layout-vertical" value="vertical">
+                        <!-- <label class="form-check-label" for="layout-vertical"></label> -->
+                    </div>
+                    <!-- <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-horizontal" value="horizontal">
+                        <label class="form-check-label" for="layout-horizontal"></label>
+                    </div> -->
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-light" value="light">
+                        <label class="form-check-label" for="layout-mode-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-dark" value="dark">
+                        <label class="form-check-label" for="layout-mode-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                        <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
+                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                        <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                        <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                        <label class="form-check-label" for="topbar-color-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                        <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                        <label class="form-check-label" for="sidebar-size-default">Default</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                        <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                        <label class="form-check-label" for="sidebar-color-light">Light</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                        <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                        <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-ltr" value="ltr">
+                        <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-rtl" value="rtl">
+                        <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                    </div>
+
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="./static/libs/jquery/jquery.min.js"></script>
+        <script src="./static/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="./static/libs/metismenu/metisMenu.min.js"></script>
+        <script src="./static/libs/simplebar/simplebar.min.js"></script>
+        <script src="./static/libs/node-waves/waves.min.js"></script>
+        <script src="./static/libs/feather-icons/feather.min.js"></script>
+        <!-- pace js -->
+        <script src="./static//libs/pace-js/pace.min.js"></script>
+        <script src="./static/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="./static/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="./static/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="./static/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <!-- Datatable init js -->
+
+        <script src="./static/js/pages/datatables.init.js"></script>
+
+        <script src="./static//js/app.js"></script>
+        <script>
+            function getData(data) {
+                        $('#edit-user-btn').click();
+                }
+                const getClasses = ()=>{
+                let user = JSON.parse(localStorage.getItem("user"));
+                let xrh = new XMLHttpRequest();
+                xrh.onload = ()=>{
+                    resp = JSON.parse(xrh.responseText)
+                    if(resp.success){
+                        let tbody = document.querySelector('tbody');
+                        let content = ""
+                        resp.data.forEach(element => {
+                            content += `
+                                            <tr>
+                                                <td>${element.course_code}</td>
+                                                <td>${element.faculty}</td>
+                                                <td>${element.day}</td>
+                                                <td>${element.time}</td>
+                                                <td>${element.building}</td>
+                                                <td>${element.students_registered}</td>
+                                            </tr>`
+                        });
+                        tbody.innerHTML = content
+                    }
+                    else{
+                        location.href = "./"
+                    }
+                }
+                xrh.open('GET','http://localhost:8000/api/faculty/get-classes');
+                xrh.setRequestHeader('Authorization',user.token)
+                xrh.send()
+            }
+            getClasses();
+                const getCourses = ()=>{
+                let user = JSON.parse(localStorage.getItem("user"));
+                let xrh = new XMLHttpRequest();
+                xrh.onload = ()=>{
+                    resp = JSON.parse(xrh.responseText)
+                    if(resp.success){
+                        let sbody = document.querySelector('#course_code');
+                        let content = ""
+                        resp.data.forEach((element,index) => {
+                            content += `
+                            <option value="${element.id}" ${index===0?"selected":null}>${element.course_code}</option>
+                            `
+                        });
+                        sbody.innerHTML = content
+                    }
+                    else{
+                        location.href = "./"
+                    }
+                }
+                xrh.open('GET','http://localhost:8000/api/faculty/get-course');
+                xrh.setRequestHeader('Authorization',user.token)
+                xrh.send()
+            }
+            getCourses();
+                const getLocation = ()=>{
+                let user = JSON.parse(localStorage.getItem("user"));
+                let xrh = new XMLHttpRequest();
+                xrh.onload = ()=>{
+                    resp = JSON.parse(xrh.responseText)
+                    if(resp.success){
+                        let sbody = document.querySelector('#building');
+                        let content = ""
+                        resp.data.forEach((element,index) => {
+                            content += `
+                            <option value="${element.id}" ${index===0?"selected":null}>${element.building_name}</option>
+                            `
+                        });
+                        sbody.innerHTML = content
+                    }
+                    else{
+                        location.href = "./"
+                    }
+                }
+                xrh.open('GET','http://localhost:8000/api/faculty/get-location');
+                xrh.setRequestHeader('Authorization',user.token)
+                xrh.send()
+            }
+            getLocation();
+            addClasses = ()=>{
+                let user = JSON.parse(localStorage.getItem("user"));
+                let button = document.getElementById("submit");
+                button.onclick = (e)=>{
+                    e.preventDefault();
+                let data = {
+                course_code : document.getElementById("course_code").value,
+                faculty : document.getElementById("faculty").value,
+                day : document.getElementById("day").value,
+                time : document.getElementById("time").value,
+                building : document.getElementById("building").value,
+                }
+                xrh = new XMLHttpRequest();
+                xrh.onload = ()=>{
+                    let resp = JSON.parse(xrh.responseText)
+                    if(resp.success){
+                        getClasses();
+                        document.getElementsByClassName("btn-close")[0].click();
+                    }
+                    else{
+                        document.getElementById('message').innerText = resp.error;
+                        document.getElementById('message-parent').style.display = "block";
+                    }
+                }
+                xrh.open('POST','http://localhost:8000/api/faculty/add-classes');
+                xrh.setRequestHeader('Content-Type','application/json')
+                xrh.setRequestHeader('Authorization',user.token)
+                xrh.send(JSON.stringify(data))
+                }
+            }
+            addClasses();
+        </script>
+    </body>
+
+</html>
