@@ -12,7 +12,7 @@ class Inventory(models.Model):
     price = models.IntegerField()
     sales = models.IntegerField()
     location = models.TextField(max_length=50)
-    document = models.ImageField(upload_to="")
+    document = models.FileField(upload_to="")
 
     def __str__(self):
         return self.name
