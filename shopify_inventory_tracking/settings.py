@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!^=4h3$vg@rujq8$0(=fog#n3dtck!#dot=ce_jc27&_&i0!0=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,6 +92,10 @@ DATABASES = {
         'HOST': 'localhost'
     }
 }
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -149,3 +154,5 @@ DROPBOX_CONSUMER_KEY = '5d1c7o8pve34pup'
 DROPBOX_CONSUMER_SECRET = '5sqfj70e1j1ck4s'
 DROPBOX_ACCESS_TOKEN = 'sl.A_5N-8Nm2UQuuwLEqfmFGdVl5EpXqKYDhjuned22kypGgDzLrQtOjz4c6pZTt7pBePhLn0HPEQnhn56BKZOtHuAIX9kn78AFqVhEdLMgVn7hXt5tYNeRmaEjSlzULnOb-hTAJso'
 DROPBOX_OAUTH2_TOKEN = 'sl.A_5N-8Nm2UQuuwLEqfmFGdVl5EpXqKYDhjuned22kypGgDzLrQtOjz4c6pZTt7pBePhLn0HPEQnhn56BKZOtHuAIX9kn78AFqVhEdLMgVn7hXt5tYNeRmaEjSlzULnOb-hTAJso'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

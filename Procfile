@@ -1,0 +1,1 @@
+web: gunicorn shopify_inventory_tracking.wsgi --log-file -
