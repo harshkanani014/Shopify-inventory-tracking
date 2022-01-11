@@ -220,7 +220,7 @@
                                             {% for i in all_items %}
                                             <tr>
                                                 <td>{{i.date_added}}</td>
-                                                <td><img src="http://127.0.0.1:8000/media/{{i.document}}" width="50" height="50"></td>
+                                                {% comment %} <td><img src="http://127.0.0.1:8000/media/{{i.document}}" width="50" height="50"></td> {% endcomment %}
                                                 <td>{{i.item_code}}</td>
                                                 <td>{{i.item_name}}</td>
                                                 <td>{{i.quantity}}</td>
