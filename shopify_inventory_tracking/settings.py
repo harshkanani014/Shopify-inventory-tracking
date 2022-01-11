@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -148,11 +149,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+env = environ.Env()
+environ.Env.read_env()
 
-DROPBOX_CONSUMER_KEY = 'p00jnh6awnke7fz'
-DROPBOX_CONSUMER_SECRET = 'wphodo9yr3afbtj'
-DROPBOX_ACCESS_TOKEN = '1-Zu24opSFEAAAAAAAAAAS0baZLFtUFS1M3VCHSR3RG3-FaSwQPjQRUkULADsdj4'
-DROPBOX_OAUTH2_TOKEN = '1-Zu24opSFEAAAAAAAAAAS0baZLFtUFS1M3VCHSR3RG3-FaSwQPjQRUkULADsdj4'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_QUERYSTRING_AUTH = False
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
